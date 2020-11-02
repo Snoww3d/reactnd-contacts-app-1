@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
+
 
 class ListContacts extends Component {
   static propTypes = {
     contacts: PropTypes.array.isRequired,
     onDeleteContact: PropTypes.func.isRequired,
   }
+
   state = {
     query: ''
   }
+
   updateQuery = (query) => {
     this.setState(() => ({
       query: query.trim()
     }))
   }
+
   clearQuery = () => {
     this.updateQuery('')
   }
+
   render() {
     const { query } = this.state
     const { contacts, onDeleteContact } = this.props
@@ -25,8 +30,8 @@ class ListContacts extends Component {
     const showingContacts = query === ''
       ? contacts
       : contacts.filter((c) => (
-          c.name.toLowerCase().includes(query.toLowerCase())
-        ))
+        c.name.toLowerCase().includes(query.toLowerCase())
+      ))
 
     return (
       <div className='list-contacts'>
@@ -40,7 +45,7 @@ class ListContacts extends Component {
           />
           <Link
             to='/create'
-            className='add-contact'
+                       className='add-contact'
           >Add Contact</Link>
         </div>
 
@@ -67,7 +72,7 @@ class ListContacts extends Component {
               <button
                 onClick={() => onDeleteContact(contact)}
                 className='contact-remove'>
-                  Remove
+                Remove
               </button>
             </li>
           ))}
@@ -77,4 +82,4 @@ class ListContacts extends Component {
   }
 }
 
-export default ListContacts
+export default ListContacts 
